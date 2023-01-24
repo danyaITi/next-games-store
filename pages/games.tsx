@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Select from '../components/games/Filter';
 import {selectGenre, selectPrice} from '../utils/selectItems';
 import DrawerComponent from '../components/games/Drawer';
+import Search from '../components/games/Search';
 
 export const getStaticProps: GetStaticProps = async () => {
     try {
@@ -49,7 +50,7 @@ const Games:React.FC<Games> = ({games}) => {
                         <span>Фильтры (1)</span>
                         <span>Cбросить</span>
                     </div>
-                    <input className={styles.search} type="text" placeholder='Ключевые слова'/>
+                    <Search/>
                     <Select data={selectPrice}/>
                     <Select data={selectGenre}/>
                 </div>
