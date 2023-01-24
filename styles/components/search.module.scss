@@ -10,6 +10,11 @@
     height: 40px;
     width: 230px;
 
+    @media screen and (max-width:1024px) {
+        width: 100%;
+        margin: 15px 0px;
+    }
+
     &::placeholder{
         color: -internal-light-dark(black, white);
         font-family: 'Inter', sans-serif;

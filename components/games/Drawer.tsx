@@ -7,6 +7,7 @@ import Select from './Filter';
 import {selectGenre, selectPrice} from '../../utils/selectItems'
 import styles from '../../styles/components/drawer.module.scss';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import Search from './Search';
 
 const DrawerComponent:React.FC = () => {
   const [state, setState] = React.useState({
@@ -34,6 +35,10 @@ const DrawerComponent:React.FC = () => {
             onKeyDown={toggleDrawer(anchor, false)}
         >
             <List sx={{backgroundColor:'#121212'}}>
+				<div className={styles.block}>
+					<h4>Фильтры (1)</h4>
+					<Search/>
+				</div>
                 <Select data={selectPrice}/>
                 <Select data={selectGenre}/>
             </List>
