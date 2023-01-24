@@ -1,0 +1,40 @@
+.filter{
+    border-top: 1px solid rgb(114, 114, 114);
+    box-shadow: none;
+    width: 230px;
+    background: none;
+
+    .block{
+        .name{
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            line-height: 1.625;
+            text-transform: uppercase;
+            color: #ccc;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+        }
+        &:focus{
+            border: 1px solid #ccc;
+        }
+    }
+    .selectItems{
+        display: flex;
+        flex-direction: column;
+        span{
+            color: #ccc;
+            cursor: pointer;
+            font-size: 14px;
+            letter-spacing: 0.2px;
+            line-height: 1.4;
+            font-family: 'Inter', sans-serif;
+            &:not(:last-child){
+                margin-bottom: 15px;
+            }
+
+            &:hover{
+                color:#f5f5f5
+            }
+        }
+    }
+}

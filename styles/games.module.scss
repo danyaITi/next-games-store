@@ -1,0 +1,83 @@
+.gamesFlex{
+    margin-top: 50px;
+    @media screen and (min-width:1025px) {
+        display: flex;
+        justify-content: space-between;
+        margin-top:50px;
+    }
+
+    .gamesGrid{
+        margin-right: 20px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-column-gap: 15px;
+        grid-row-gap: 30px;
+    
+        @media (max-width: 1500px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    
+        @media (max-width: 820px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    
+        @media (max-width: 380px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+        @media screen and (max-width:1024px) {
+            margin-right: 0px;
+        }
+    }
+
+    .right{
+        @media screen and (max-width:1024px) {
+            position: absolute;
+            visibility: hidden;
+        }
+        .count{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+    
+            span{
+                font-family: 'Inter', sans-serif;
+                font-size: 14px;
+                letter-spacing: 0.2px;
+                color: rgb(245, 245, 245);
+                cursor: pointer;
+    
+                &:not(:first-child){
+                    text-transform: uppercase;
+                    font-size: 11px;
+                    letter-spacing: 0.5px;
+                }
+            }
+        }
+
+        .search{
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 0;
+            padding-left: 15px;
+            background-color: #ffffff1a;
+            color: rgb(245, 245, 245);
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            height: 40px;
+            width: 230px;
+        
+            &::placeholder{
+                color: -internal-light-dark(black, white);
+                font-family: 'Inter', sans-serif;
+                font-weight: 500;
+                font-size: 13px;
+                
+            }
+        }
+        
+    }
+}
+
+
