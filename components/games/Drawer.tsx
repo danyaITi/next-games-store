@@ -28,19 +28,29 @@ const DrawerComponent:React.FC = () => {
       setState({ ...state, [anchor]: open });
     };
 
-    const list = (anchor: Anchor) => (
-         <Box
-            sx={{ width:'230px', backgroundColor:'#121212', height:'100%' }}
+    const list = () => (
+        <Box
+            sx={{ 
+				width:'230px', 
+				backgroundColor:'#121212', 
+				height:'100%',
+				ul: {padding:0}
+			}}
             role="presentation"
-            onKeyDown={toggleDrawer(anchor, false)}
         >
-            <List sx={{backgroundColor:'#121212'}}>
-				<div className={styles.block}>
+            <List className={styles.list}>
+				<div className={styles.header}>
 					<h4>Фильтры (1)</h4>
 					<Search/>
 				</div>
+
                 <Select data={selectPrice}/>
                 <Select data={selectGenre}/>
+
+				<div className={styles.footer}>
+					<button>Очистить</button>
+					<button>Готово</button>
+				</div>
             </List>
         </Box>
        
@@ -59,7 +69,7 @@ const DrawerComponent:React.FC = () => {
                     open={state[anchor]}
                     onClose={toggleDrawer(anchor, false)}
                 >
-                    {list(anchor)}
+                    {list()}
                 </Drawer>
             </React.Fragment>
         ))}
