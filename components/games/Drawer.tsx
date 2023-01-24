@@ -29,7 +29,7 @@ const DrawerComponent:React.FC = () => {
 
     const list = (anchor: Anchor) => (
          <Box
-            sx={{ maxWidth:350, backgroundColor:'#121212', height:'100%' }}
+            sx={{ width:'230px', backgroundColor:'#121212', height:'100%' }}
             role="presentation"
             onKeyDown={toggleDrawer(anchor, false)}
         >
