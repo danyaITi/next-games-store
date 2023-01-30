@@ -8,6 +8,7 @@ import Select from '../components/games/Filter';
 import {selectGenre, selectPrice} from '../utils/selectItems';
 import DrawerComponent from '../components/games/Drawer';
 import Search from '../components/games/Search';
+import { useState } from 'react';
 
 export const getStaticProps: GetStaticProps = async () => {
     try {
@@ -33,6 +34,12 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 
 const Games:React.FC<Games> = ({games}) => {
+    const [count, setCount] = useState<number>(0);
+
+    const changeCount = () => {
+        setCount(prevCount => prevCount+1)
+    };
+
 
     return(
         <Container maxWidth="lg">
@@ -47,12 +54,12 @@ const Games:React.FC<Games> = ({games}) => {
 
                 <div className={styles.right}>
                     <div className={styles.count}>
-                        <span>Фильтры (1)</span>
+                        <span>Фильтры ({count})</span>
                         <span>Cбросить</span>
                     </div>
                     <Search/>
-                    <Select data={selectPrice}/>
-                    <Select data={selectGenre}/>
+                    <Select changeCount={changeCount} data={selectPrice}/>
+                    <Select changeCount={changeCount} data={selectGenre}/>
                 </div>
             </Box>
         </Container>
