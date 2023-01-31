@@ -1,11 +1,11 @@
 export type Anchor = 'right';
 
-export interface Pages {
+export type Pages = {
     text: string
     href: string
 }
 
-export interface SelectItem {
+export type SelectItem = {
     title:string,
     items: {
         name:string
@@ -13,7 +13,7 @@ export interface SelectItem {
     }[]
 }
 
-export interface Game {
+export type Game = {
     image: string;
     icon: string;
     title: string;
