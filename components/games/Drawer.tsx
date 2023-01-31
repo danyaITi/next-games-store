@@ -40,7 +40,7 @@ const DrawerComponent:React.FC = () => {
         >
             <List className={styles.list}>
 				<div className={styles.header}>
-					<h4>Фильтры (1)</h4>
+					<h4>Фильтры</h4>
 					<Search/>
 				</div>
 

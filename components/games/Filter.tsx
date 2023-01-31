@@ -5,22 +5,13 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import styles from '../../styles/components/filter.module.scss';
 import { SelectItem } from '../../types/types';
-import React, { useState } from 'react';
 
 interface SelectProps {
     data:SelectItem
-    changeCount:()=>void
-    
 }
-const Select:React.FC<SelectProps> = ({data,changeCount}) => {
-    const [active,setActive] = useState(false)
+
+const Select:React.FC<SelectProps> = ({data}) => {
     const {title, items} = data;
-
-    const qwe = () => {
-        changeCount()
-        setActive(true)
-    }
-
 
     return(
         <Accordion className={styles.filter}>
@@ -37,10 +28,9 @@ const Select:React.FC<SelectProps> = ({data,changeCount}) => {
                 <Typography className={styles.selectItems}>
                     {items.map((item)=>(
                         <span key={item.id}>
-                            <input type='checkbox' onClick={qwe}/>
-                            <label>{item.name}</label>
-                        </span>
-                    ))}
+                            {item.name}
+                        </span> 
+                    ))} 
                 </Typography>
             </AccordionDetails>
         </Accordion>

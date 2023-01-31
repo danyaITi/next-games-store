@@ -34,12 +34,6 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 
 const Games:React.FC<Games> = ({games}) => {
-    const [count, setCount] = useState<number>(0);
-
-    const changeCount = () => {
-        setCount(prevCount => prevCount+1)
-    };
-
 
     return(
         <Container maxWidth="lg">
@@ -54,12 +48,12 @@ const Games:React.FC<Games> = ({games}) => {
 
                 <div className={styles.right}>
                     <div className={styles.count}>
-                        <span>Фильтры ({count})</span>
+                        <span>Фильтры</span>
                         <span>Cбросить</span>
                     </div>
                     <Search/>
-                    <Select changeCount={changeCount} data={selectPrice}/>
-                    <Select changeCount={changeCount} data={selectGenre}/>
+                    <Select data={selectPrice}/>
+                    <Select data={selectGenre}/>
                 </div>
             </Box>
         </Container>
