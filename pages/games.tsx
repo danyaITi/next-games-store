@@ -12,7 +12,7 @@ import { useState } from 'react';
 
 export const getStaticProps: GetStaticProps = async () => {
     try {
-        const resp = await fetch(`${process.env.API_HOST}/games`);
+        const resp = await fetch(`${process.env.API_HOST}`);
         const data = await resp.json();
 
         if(!data){
