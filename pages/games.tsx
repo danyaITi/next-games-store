@@ -62,7 +62,7 @@ const Games:React.FC<Games> = ({games}) => {
                 <div className={styles.right}>
                     <div className={styles.count}>
                         <span>Фильтры</span>
-                        <span>Cбросить</span>
+                        <span onClick={()=>setValue('')}>Cбросить</span>
                     </div>
                     <Search setValue={setValue} value={value}/>
                     <Select data={selectPrice}/>
