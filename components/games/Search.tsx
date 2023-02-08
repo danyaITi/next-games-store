@@ -1,8 +1,14 @@
 import styles from '../../styles/components/search.module.scss'
 
-const Search:React.FC = () => {
+interface SearchProps {
+    value:string
+    setValue:(arg:string) => void
+}
+
+const Search:React.FC<SearchProps> = ({value, setValue}) => {
+
     return(
-        <input className={styles.search} type="text" placeholder='Ключевые слова'/>
+        <input value={value} onChange={(e)=>setValue(e.target.value)} className={styles.search} type="text" placeholder='Ключевые слова'/>
     )
 }
 

@@ -33,17 +33,30 @@ export const getStaticProps: GetStaticProps = async () => {
 
 }
 
+
 const Games:React.FC<Games> = ({games}) => {
+    const [value, setValue] = useState<string>('')
+
+    const filterGames = () => {
+        const data = games.filter((item)=>{
+            if(item.title.toLowerCase().includes(value.toLowerCase())){
+                return true
+            } else {
+                return false
+            }
+        })
+        .map((item) => (
+            <Card key={item.id} {...item}/>
+        ))
+        return data
+    }
 
     return(
         <Container maxWidth="lg">
             <Box className={styles.gamesFlex}>
                 <DrawerComponent/>
-                
                 <div className={styles.gamesGrid}>
-                    {games.map((item) => (
-                        <Card key={item.id} {...item}/>
-                    ))}
+                    {filterGames()}
                 </div>
 
                 <div className={styles.right}>
@@ -51,7 +64,7 @@ const Games:React.FC<Games> = ({games}) => {
                         <span>Фильтры</span>
                         <span>Cбросить</span>
                     </div>
-                    <Search/>
+                    <Search setValue={setValue} value={value}/>
                     <Select data={selectPrice}/>
                     <Select data={selectGenre}/>
                 </div>
