@@ -7,16 +7,23 @@ import Box from '@mui/material/Box';
 import { useMemo } from 'react';
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const resp = await fetch(`${process.env.API_URL}/games`);
-    const data = await resp.json();
+    try{
+        const resp = await fetch(`${process.env.API_URL}/games`);
+        const data = await resp.json();
 
-    const paths = data.map(({id}) => ({
-        params: {id: id.toString()}
-    }));
+        const paths = data.map(({id}) => ({
+            params: {id: id.toString()}
+        }));
 
-    return {
-        paths,
-        fallback:false
+        return {
+            paths,
+            fallback:false
+        }
+    } catch(error) {
+        return {
+            paths: [],
+            fallback:false
+        }
     }
 
 }
@@ -37,7 +44,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
         }
     } catch (error) {
         return {
-            props: {game: null}
+            props: {game: {}}
         }
     }
 

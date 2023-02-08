@@ -54,7 +54,7 @@ const Games:React.FC<Games> = ({games}) => {
     return(
         <Container maxWidth="lg">
             <Box className={styles.gamesFlex}>
-                <DrawerComponent/>
+                <DrawerComponent />
                 <div className={styles.gamesGrid}>
                     {filterGames()}
                 </div>
