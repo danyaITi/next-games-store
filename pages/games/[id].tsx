@@ -8,7 +8,7 @@ import { useMemo } from 'react';
 
 export const getStaticPaths: GetStaticPaths = async () => {
     try{
-        const resp = await fetch(`${process.env.API_HOST}`);
+        const resp = await fetch(`${process.env.API_HOST}/games`);
         const data = await resp.json();
 
         const paths = data.map(({id}) => ({
@@ -30,7 +30,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({params}) => {
     try {
-        const resp = await fetch(`${process.env.API_HOST}/${params.id}`);
+        const resp = await fetch(`${process.env.API_HOST}/games/${params.id}`);
         const data = await resp.json();
 
         if(!data){
