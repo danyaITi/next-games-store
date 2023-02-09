@@ -10,7 +10,7 @@ import Dashboard from './Dashboard';
 import BurgerMenu from './Burger';
 import { darkTheme } from '../../styles/themes';
 
-const pages = [{text:'Главная', href: '/'}, {text:'Все игры', href: '/games'}, {text:'Новости', href: '/news'}];
+const pages = [{text:'Главная', href: '/main'}, {text:'Все игры', href: '/'}, {text:'Новости', href: '/news'}];
 const settings = ['Профиль', 'Аккаунт', 'Управление', 'Войти'];
 
 const Header:React.FC = () => {
