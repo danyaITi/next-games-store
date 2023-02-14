@@ -8,7 +8,7 @@ import { SelectItem } from '../../types/types';
 
 interface SelectProps {
     data:SelectItem
-    setGenre:(arg:string)=>void
+    setGenre?:(arg:string)=>void
 }
 
 const Select:React.FC<SelectProps> = ({data, setGenre}) => {

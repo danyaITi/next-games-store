@@ -93,6 +93,7 @@ const Games:React.FC<Games> = ({games}) => {
                         <span onClick={cancelOptions}>Cбросить</span>
                     </div>
                     <Search setValue={setValue} value={value}/>
+                    
                     <Select setGenre={setGenre} data={selectPrice}/>
                     <Select setGenre={setGenre} data={selectGenre}/>
                 </div>
