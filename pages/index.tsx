@@ -8,7 +8,7 @@ import Select from '../components/games/Filter';
 import {selectGenre, selectPrice} from '../utils/selectItems';
 import DrawerComponent from '../components/games/Drawer';
 import Search from '../components/games/Search';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 export const getStaticProps: GetStaticProps = async () => {
     try {
@@ -22,7 +22,7 @@ export const getStaticProps: GetStaticProps = async () => {
         }
 
         return {
-            props: {games: data}
+            props: {games: data},
         }
 
     } catch (error) {
@@ -36,8 +36,9 @@ export const getStaticProps: GetStaticProps = async () => {
 
 const Games:React.FC<Games> = ({games}) => {
     const [value, setValue] = useState<string>('')
+    const [genre, setGenre] = useState<string>('')
 
-    const filterGames = () => {
+    const searchGames = () => {
         const data = games.filter((item)=>{
             if(item.title.toLowerCase().includes(value.toLowerCase())){
                 return true
@@ -51,22 +52,49 @@ const Games:React.FC<Games> = ({games}) => {
         return data
     }
 
+    const filterGames = useCallback(() => {
+        const data = games.filter((item)=>{
+            if(item.genres.includes(genre) 
+                || item.price === genre 
+                || genre === 'Ниже 650,00 руб' && item.price<650 
+                ){
+                return true
+            } else {
+                return false
+            }
+        })
+        .map((item) => (
+            <Card key={item.id} {...item}/>
+        ))
+        return data
+    },[genre])
+
+    useEffect(()=>{
+        filterGames()
+    },[genre])
+
+    const cancelOptions = () => {
+        setValue('')
+        setGenre('')
+    }
+
+
     return(
         <Container maxWidth="lg">
             <Box className={styles.gamesFlex}>
                 <DrawerComponent />
                 <div className={styles.gamesGrid}>
-                    {filterGames()}
+                    {!genre.length ? searchGames() : filterGames()}
                 </div>
 
                 <div className={styles.right}>
                     <div className={styles.count}>
                         <span>Фильтры</span>
-                        <span onClick={()=>setValue('')}>Cбросить</span>
+                        <span onClick={cancelOptions}>Cбросить</span>
                     </div>
                     <Search setValue={setValue} value={value}/>
-                    <Select data={selectPrice}/>
-                    <Select data={selectGenre}/>
+                    <Select setGenre={setGenre} data={selectPrice}/>
+                    <Select setGenre={setGenre} data={selectGenre}/>
                 </div>
             </Box>
         </Container>

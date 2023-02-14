@@ -10,7 +10,6 @@ export type SelectItem = {
     items: {
         name:string
         id:number
-        check:boolean
     }[]
 }
 

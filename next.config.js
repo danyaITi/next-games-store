@@ -16,7 +16,7 @@ const nextConfig = {
         contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
         remotePatterns: [],
         unoptimized: false,
-      },
-  }
+    },
+}
   
-  module.exports = nextConfig
+module.exports = nextConfig

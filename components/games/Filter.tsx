@@ -8,9 +8,10 @@ import { SelectItem } from '../../types/types';
 
 interface SelectProps {
     data:SelectItem
+    setGenre:(arg:string)=>void
 }
 
-const Select:React.FC<SelectProps> = ({data}) => {
+const Select:React.FC<SelectProps> = ({data, setGenre}) => {
     const {title, items} = data;
 
     return(
@@ -27,7 +28,7 @@ const Select:React.FC<SelectProps> = ({data}) => {
             <AccordionDetails>
                 <Typography className={styles.selectItems}>
                     {items.map((item)=>(
-                        <span key={item.id}>
+                        <span onClick={()=>setGenre(item.name)} key={item.id}>
                             {item.name}
                         </span> 
                     ))} 
