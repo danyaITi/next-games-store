@@ -5,14 +5,37 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import styles from '../../styles/components/filter.module.scss';
 import { SelectItem } from '../../types/types';
+import { useState } from 'react'
 
 interface SelectProps {
     data:SelectItem
     setGenre?:(arg:string)=>void
+
+    active:boolean
+    setActive:(arg:boolean)=>void
 }
 
-const Select:React.FC<SelectProps> = ({data, setGenre}) => {
+const Select:React.FC<SelectProps> = ({data, setGenre, active, setActive}) => {
+    const [activeIndex, setActiveIndex] = useState<number | null>(null)
     const {title, items} = data;
+
+
+    const handleClick = (item: {name:string, id:number}) => {
+        setGenre(item.name)
+        setActiveIndex(item.id)
+        setActive(!active)
+
+        if(activeIndex !== item.id){
+            setActive(true)
+        } else if(active){
+            setGenre('')
+        }
+        
+    }
+
+    
+
+    
 
     return(
         <Accordion className={styles.filter}>
@@ -28,7 +51,11 @@ const Select:React.FC<SelectProps> = ({data, setGenre}) => {
             <AccordionDetails>
                 <Typography className={styles.selectItems}>
                     {items.map((item)=>(
-                        <span onClick={()=>setGenre(item.name)} key={item.id}>
+                        <span 
+                            className={activeIndex === item.id && active? styles.active : ''} 
+                            onClick={()=>handleClick(item)} 
+                            key={item.id}
+                        >
                             {item.name}
                         </span> 
                     ))} 

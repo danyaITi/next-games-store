@@ -9,7 +9,7 @@ import Select from '../components/games/Filter';
 import {selectGenre, selectPrice} from '../utils/selectItems';
 import DrawerComponent from '../components/games/Drawer';
 import Search from '../components/games/Search';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useDebounce } from '../hooks/useDebounce';
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -38,6 +38,7 @@ export const getStaticProps: GetStaticProps = async () => {
 const Games:React.FC<Games> = ({games}) => {
     const [value, setValue] = useState<string>('')
     const [genre, setGenre] = useState<string>('')
+    const [active,setActive] = useState<boolean>(false)
 
     const {debounce,isPending} = useDebounce(value,500)
 
@@ -72,9 +73,11 @@ const Games:React.FC<Games> = ({games}) => {
         return data
     }
 
+
     const cancelOptions = () => {
         setValue('')
         setGenre('')
+        setActive(false)
     }
 
     useEffect(()=>{
@@ -109,8 +112,8 @@ const Games:React.FC<Games> = ({games}) => {
                     </div>
                     <Search setValue={setValue} value={value}/>
                     
-                    <Select setGenre={setGenre} data={selectPrice}/>
-                    <Select setGenre={setGenre} data={selectGenre}/>
+                    <Select active={active} setActive={setActive} setGenre={setGenre} data={selectPrice}/>
+                    <Select active={active} setActive={setActive} setGenre={setGenre} data={selectGenre}/>
                 </div>
             </Box>
         </Container>
