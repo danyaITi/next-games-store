@@ -3,12 +3,14 @@ import { GetStaticProps } from 'next';
 import { Games } from '../types/types';
 import Card from '../components/games/Card';
 import styles from '../styles/games.module.scss';
+import style from '../styles/components/card.module.scss';
 import Box from '@mui/material/Box';
 import Select from '../components/games/Filter';
 import {selectGenre, selectPrice} from '../utils/selectItems';
 import DrawerComponent from '../components/games/Drawer';
 import Search from '../components/games/Search';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
+import { useDebounce } from '../hooks/useDebounce';
 
 export const getStaticProps: GetStaticProps = async () => {
     try {
@@ -33,14 +35,15 @@ export const getStaticProps: GetStaticProps = async () => {
 
 }
 
-
 const Games:React.FC<Games> = ({games}) => {
     const [value, setValue] = useState<string>('')
     const [genre, setGenre] = useState<string>('')
 
+    const {debounce,isPending} = useDebounce(value,500)
+
     const searchGames = () => {
         const data = games.filter((item)=>{
-            if(item.title.toLowerCase().includes(value.toLowerCase())){
+            if(item.title.toLowerCase().includes(debounce.toLowerCase())){
                 return true
             } else {
                 return false
@@ -52,13 +55,13 @@ const Games:React.FC<Games> = ({games}) => {
         return data
     }
 
-    const filterGames = useCallback(() => {
+    const filterGames = () => {
         const data = games.filter((item)=>{
             if(item.genres.includes(genre) 
                 || item.price === genre 
                 || genre === 'Ниже 650,00 руб' && item.price<650 
                 ){
-                return true
+                return true 
             } else {
                 return false
             }
@@ -67,25 +70,37 @@ const Games:React.FC<Games> = ({games}) => {
             <Card key={item.id} {...item}/>
         ))
         return data
-    },[genre])
-
-    useEffect(()=>{
-        filterGames()
-    },[genre])
+    }
 
     const cancelOptions = () => {
         setValue('')
         setGenre('')
     }
 
+    useEffect(()=>{
+    },[debounce])
+
+    useEffect(()=>{
+        filterGames()
+    },[genre])
+
 
     return(
         <Container maxWidth="lg">
             <Box className={styles.gamesFlex}>
                 <DrawerComponent />
+                 
                 <div className={styles.gamesGrid}>
-                    {!genre.length ? searchGames() : filterGames()}
+
+                    {!isPending 
+                    ? [...new Array(games.length)]
+                        .map((_,i) => (
+                            <div key={i} className={style.skeleton}>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+                        )) 
+                    : <>{!genre.length ? searchGames() : filterGames()}</>}
+                    
                 </div>
+               
 
                 <div className={styles.right}>
                     <div className={styles.count}>
