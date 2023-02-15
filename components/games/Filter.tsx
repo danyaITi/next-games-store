@@ -19,7 +19,6 @@ const Select:React.FC<SelectProps> = ({data, setGenre, active, setActive}) => {
     const [activeIndex, setActiveIndex] = useState<number | null>(null)
     const {title, items} = data;
 
-
     const handleClick = (item: {name:string, id:number}) => {
         setGenre(item.name)
         setActiveIndex(item.id)
@@ -32,10 +31,6 @@ const Select:React.FC<SelectProps> = ({data, setGenre, active, setActive}) => {
         }
         
     }
-
-    
-
-    
 
     return(
         <Accordion className={styles.filter}>
@@ -52,7 +47,7 @@ const Select:React.FC<SelectProps> = ({data, setGenre, active, setActive}) => {
                 <Typography className={styles.selectItems}>
                     {items.map((item)=>(
                         <span 
-                            className={activeIndex === item.id && active? styles.active : ''} 
+                            className={activeIndex === item.id && active ? styles.active : ''} 
                             onClick={()=>handleClick(item)} 
                             key={item.id}
                         >

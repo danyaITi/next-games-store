@@ -20,7 +20,7 @@ export const useDebounce = (value:string, delay:number) => {
 
     return {
         debounce,
-        isPending
+        isPending,
     }
     
 }

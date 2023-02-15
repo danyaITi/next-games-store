@@ -1,8 +1,8 @@
 export const selectPrice = {
     title: 'Цена',
     items: [
-        {name:'Бесплатно', id:1},
-        {name:'Ниже 650,00 руб', id:2}
+        {name:'Бесплатно', id:14},
+        {name:'Ниже 650,00 руб', id:15}
     ]
     
 }
