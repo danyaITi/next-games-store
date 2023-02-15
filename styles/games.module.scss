@@ -46,12 +46,12 @@
                 font-size: 14px;
                 letter-spacing: 0.2px;
                 color: rgb(245, 245, 245);
-                cursor: pointer;
     
                 &:not(:first-child){
                     text-transform: uppercase;
                     font-size: 11px;
                     letter-spacing: 0.5px;
+                    cursor: pointer;
                 }
             }
         }
