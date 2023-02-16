@@ -80,7 +80,7 @@ const Game:React.FC<GameId> = ({game}) => {
     ];
 
     return(
-        <Container maxWidth='xl'> 
+        <Container maxWidth='xl'>
             <Box className={styles.gameFlex}>
                 <div className={styles.left}>
                     <h1 className={styles.title}>{game.title}</h1>
@@ -89,7 +89,7 @@ const Game:React.FC<GameId> = ({game}) => {
                         src={game.image}
                         className={styles.img} 
                         width={600} 
-                        height={350} 
+                        height={350}
                         alt={game.title}
                     />
                     
@@ -123,6 +123,7 @@ const Game:React.FC<GameId> = ({game}) => {
                     </>
                 </div>
             </Box>
+            
         </Container>
     )
 }

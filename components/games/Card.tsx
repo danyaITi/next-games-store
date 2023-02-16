@@ -18,7 +18,7 @@ const Card:React.FC<Game> = ({image, title, price, id}) => {
                 <>
                     <CardActionArea style={{borderRadius: '5px'}}>
 
-                        <Link href={`games/${id}`} style={{ color: 'inherit'}}>
+                        <Link href={`game/${id}`} style={{ color: 'inherit'}}>
                             <Image 
                                 className={styles.img} 
                                 src={image} 
