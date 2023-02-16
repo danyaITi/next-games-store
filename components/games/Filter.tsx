@@ -11,8 +11,8 @@ interface SelectProps {
     data:SelectItem
     setGenre?:(arg:string)=>void
 
-    active:boolean
-    setActive:(arg:boolean)=>void
+    active?:boolean
+    setActive?:(arg:boolean)=>void
 }
 
 const Select:React.FC<SelectProps> = ({data, setGenre, active, setActive}) => {
