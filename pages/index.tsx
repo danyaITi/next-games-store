@@ -56,7 +56,7 @@ const Games:React.FC<Games> = ({games}) => {
         return data
     }
 
-    const filterGames = () => {
+    const filterGames = useMemo(() => {
         const data = games.filter((item)=>{
             if(item.genres.includes(genre) 
                 || item.price === genre 
@@ -71,7 +71,7 @@ const Games:React.FC<Games> = ({games}) => {
             <Card key={item.id} {...item}/>
         ))
         return data
-    }
+    },[genre])
 
 
     const cancelOptions = () => {
@@ -84,7 +84,7 @@ const Games:React.FC<Games> = ({games}) => {
     },[debounce])
 
     useEffect(()=>{
-        filterGames()
+        filterGames
     },[genre])
 
 
@@ -100,7 +100,7 @@ const Games:React.FC<Games> = ({games}) => {
                         .map((_,i) => (
                             <div key={i} className={style.skeleton}>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
                         )) 
-                    : <>{!genre.length ? searchGames() : filterGames()}</>}
+                    : <>{!genre.length ? searchGames() : filterGames}</>}
                     
                 </div>
                
