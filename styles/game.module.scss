@@ -1,151 +1,146 @@
-.gameFlex{
-    display: flex;
-    align-items: center;
-    margin-top:50px;
-    @media screen and (max-width:770px) {
-        flex-direction: column;
-    }
+.gameFlex {
+	display: flex;
+	align-items: center;
+	margin-top: 50px;
+	@media screen and (max-width: 770px) {
+		flex-direction: column;
+	}
 
-    .right{
-        %btn{
-            width: 100%;
-            min-width: auto;
-            color: #ffffff;
-            border-radius: 4px;
-            letter-spacing: 0.5px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            font-size: 14px;
-            cursor: pointer;
-            margin-bottom: 10px;
-            height: 50px;
-            &:hover{
-                opacity: .8;
-                transition: opacity 200ms ease 0s ;
-            }
-        }
-    
-        .buy{
-            @extend %btn;
-            margin-top: 10px;
-            background-color: rgb(129, 137, 202);
-            color: black;
-        }
-        
-        .add{
-            @extend %btn;
-            background: none;
-            border: 1px solid rgba(245, 245, 245, 0.6);
-        }
-        
-        .toList{
-            @extend %btn;
-            height: 30px;
-            background: none;
-            border: 1px solid rgba(245, 245, 245, 0.6);
-            font-size: 12px;
-            margin-bottom: 0;
-        }
-        
-        .price{
-            color: rgb(245, 245, 245);
-            font-size: 14px;
-            font-weight: normal;
-            line-height: 20px;
-            letter-spacing: 0.2px;
-            font-family: 'Inter', sans-serif;
-            @media screen and (max-width:770px) {
-                text-align: center;
-                margin-top: 20px;
-            }
-        }
-    
-        .icon{
-            max-width: 250px;
-            height: auto;
-            object-fit: cover;
-            display: block;
-            margin: 0 auto;
-            margin-bottom: 10px;
-        }
-    
-        @media screen and (max-width:770px) {
-            width:100%;
-        }
-    }
-    
-    .left{
-        margin-right: 20px;
-        max-width: 70%;
-        min-width: 70%;
-        @media screen and (max-width:770px) {
-            margin-right: 0px;
-        }
+	.right {
+		%btn {
+			width: 100%;
+			min-width: auto;
+			color: #ffffff;
+			border-radius: 4px;
+			letter-spacing: 0.5px;
+			font-family: 'Inter', sans-serif;
+			font-weight: 500;
+			font-size: 14px;
+			cursor: pointer;
+			margin-bottom: 10px;
+			height: 50px;
+			&:hover {
+				opacity: 0.8;
+				transition: opacity 200ms ease 0s;
+			}
+		}
 
-        .img{
-            border-radius: 2px;
-            object-fit:cover;
-            width: 100%;
-            height: auto;
-        }
-        
-        .title{
-            margin-bottom: 20px;
-            color: rgb(245, 245, 245);
-            font-weight: 700;
-            font-size: 18px;
-            line-height: 25px;
-            letter-spacing: -0.2px;
-            font-family: 'Inter', sans-serif;
-        }
-        
-        .desc{
-            font-size: 15px;
-            line-height: 25px;
-            color: rgb(245, 245, 245);
-            font-family: 'Inter', sans-serif;
-            @media screen and (min-width:1600px) {
-                font-size: 19px;
-                line-height: 30px;
-                letter-spacing: -0.4px;
-            }
-        }
-        .genres{
-            margin-top: 30px;
-            border-left:1px solid rgba(255, 255, 255, 0.1);
-            padding: 0 20px;
-            flex-direction: column;
-            ul{
-                display: flex;
-                li{
-                    color: rgb(245, 245, 245);
-                    font-size: 14px;
-                    font-family: 'Inter', sans-serif;
-                    font-weight: normal;
-                    letter-spacing: 0.2px;
-                    text-decoration: underline;
-                    cursor: pointer;
-                    &:hover{
-                        text-decoration: none;
-                    }
-                    &:not(:last-child){
-                        margin-right: 5px;
-                    }
-                }
-                 
-            }
-            span{
-                color: rgba(245, 245, 245, 0.6);
-                font-size: 14px;
-                font-weight: normal;
-                font-family: 'Inter', sans-serif;
-                line-height: 20px;
-                letter-spacing: 0.2px;
-            
-            }
-        }
-    }
+		.buy {
+			@extend %btn;
+			margin-top: 10px;
+			background-color: rgb(129, 137, 202);
+			color: black;
+		}
+
+		.add {
+			@extend %btn;
+			background: none;
+			border: 1px solid rgba(245, 245, 245, 0.6);
+		}
+
+		.toList {
+			@extend %btn;
+			height: 30px;
+			background: none;
+			border: 1px solid rgba(245, 245, 245, 0.6);
+			font-size: 12px;
+			margin-bottom: 0;
+		}
+
+		.price {
+			color: rgb(245, 245, 245);
+			font-size: 14px;
+			font-weight: normal;
+			line-height: 20px;
+			letter-spacing: 0.2px;
+			font-family: 'Inter', sans-serif;
+			@media screen and (max-width: 770px) {
+				text-align: center;
+				margin-top: 20px;
+			}
+		}
+
+		.icon {
+			max-width: 250px;
+			height: auto;
+			object-fit: cover;
+			display: block;
+			margin: 0 auto;
+			margin-bottom: 10px;
+		}
+
+		@media screen and (max-width: 770px) {
+			width: 100%;
+		}
+	}
+
+	.left {
+		margin-right: 20px;
+		max-width: 70%;
+		min-width: 70%;
+		@media screen and (max-width: 770px) {
+			margin-right: 0px;
+		}
+
+		.img {
+			border-radius: 2px;
+			object-fit: cover;
+			width: 100%;
+			height: auto;
+		}
+
+		.title {
+			margin-bottom: 20px;
+			color: rgb(245, 245, 245);
+			font-weight: 700;
+			font-size: 18px;
+			line-height: 25px;
+			letter-spacing: -0.2px;
+			font-family: 'Inter', sans-serif;
+		}
+
+		.desc {
+			font-size: 15px;
+			line-height: 25px;
+			color: rgb(245, 245, 245);
+			font-family: 'Inter', sans-serif;
+			@media screen and (min-width: 1600px) {
+				font-size: 19px;
+				line-height: 30px;
+				letter-spacing: -0.4px;
+			}
+		}
+		.genres {
+			margin-top: 30px;
+			border-left: 1px solid rgba(255, 255, 255, 0.1);
+			padding: 0 20px;
+			flex-direction: column;
+			ul {
+				display: flex;
+				li {
+					color: rgb(245, 245, 245);
+					font-size: 14px;
+					font-family: 'Inter', sans-serif;
+					font-weight: normal;
+					letter-spacing: 0.2px;
+					text-decoration: underline;
+					cursor: pointer;
+					&:hover {
+						text-decoration: none;
+					}
+					&:not(:last-child) {
+						margin-right: 5px;
+					}
+				}
+			}
+			span {
+				color: rgba(245, 245, 245, 0.6);
+				font-size: 14px;
+				font-weight: normal;
+				font-family: 'Inter', sans-serif;
+				line-height: 20px;
+				letter-spacing: 0.2px;
+			}
+		}
+	}
 }
-
-
-

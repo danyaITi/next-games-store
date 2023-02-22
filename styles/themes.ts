@@ -1,10 +1,10 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles'
 
 export const darkTheme = createTheme({
-    palette: {
+	palette: {
 		mode: 'dark',
 		primary: {
-			main: '#1976d2',
-		},
-    },
-});
+			main: '#1976d2'
+		}
+	}
+})
