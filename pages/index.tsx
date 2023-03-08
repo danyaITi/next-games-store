@@ -3,14 +3,16 @@ import { GetStaticProps } from 'next'
 import { Games } from '../types/types'
 import Card from '../components/games/Card'
 import styles from '../styles/games.module.scss'
-import style from '../styles/components/card.module.scss'
 import Box from '@mui/material/Box'
 import Select from '../components/games/Filter'
 import { selectGenre, selectPrice } from '../utils/selectItems'
 import DrawerComponent from '../components/games/Drawer'
 import Search from '../components/games/Search'
-import { useState, useEffect, useMemo } from 'react'
+import { useState } from 'react'
 import { useDebounce } from '../hooks/useDebounce'
+import { useFilter } from '../hooks/useFilter'
+import { useSearch } from '../hooks/useSearch'
+import Skeleton from '../components/games/Skeleton'
 
 export const getStaticProps: GetStaticProps = async () => {
 	try {
@@ -35,52 +37,17 @@ export const getStaticProps: GetStaticProps = async () => {
 
 const Games: React.FC<Games> = ({ games }) => {
 	const [value, setValue] = useState<string>('')
-	const [genre, setGenre] = useState<string>('')
 	const [active, setActive] = useState<boolean>(false)
 
 	const { debounce, isPending } = useDebounce(value, 500)
-
-	const searchGames = () => {
-		const data = games
-			.filter((item) => {
-				if (item.title.toLowerCase().includes(debounce.toLowerCase())) {
-					return true
-				} else {
-					return false
-				}
-			})
-			.map((item) => <Card key={item.id} {...item} />)
-		return data
-	}
-
-	const filterGames = useMemo(() => {
-		const data = games
-			.filter((item) => {
-				if (
-					item.genres.includes(genre) ||
-					item.price === genre ||
-					(genre === 'Ниже 650,00 руб' && item.price < 650)
-				) {
-					return true
-				} else {
-					return false
-				}
-			})
-			.map((item) => <Card key={item.id} {...item} />)
-		return data
-	}, [genre])
+	const { filterGames, genre, setGenre } = useFilter(games)
+	const { searchGames } = useSearch(games, debounce)
 
 	const cancelOptions = () => {
 		setValue('')
 		setGenre('')
 		setActive(false)
 	}
-
-	useEffect(() => {}, [debounce])
-
-	useEffect(() => {
-		filterGames
-	}, [genre])
 
 	return (
 		<Container maxWidth='lg'>
@@ -89,13 +56,13 @@ const Games: React.FC<Games> = ({ games }) => {
 
 				<div className={styles.gamesGrid}>
 					{!isPending ? (
-						[...new Array(games.length)].map((_, i) => (
-							<div key={i} className={style.skeleton}>
-								Lorem ipsum dolor sit amet consectetur adipisicing elit.
-							</div>
-						))
+						<Skeleton games={games} />
 					) : (
-						<>{!genre.length ? searchGames() : filterGames}</>
+						<>
+							{!genre.length
+								? searchGames().map((item) => <Card key={item.id} {...item} />)
+								: filterGames.map((item) => <Card key={item.id} {...item} />)}
+						</>
 					)}
 				</div>
 
